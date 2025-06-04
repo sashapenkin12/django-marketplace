@@ -8,6 +8,11 @@
 git clone https://github.com/sashapenkin12/drf-marketplace
 ```
 
+### Установите зависимости
+
+```
+pip install -r requirements.txt
+```
 ## Запуск
 1. Зайдите в папку проекта 'megano'.
 ```
