@@ -199,15 +199,15 @@ class ChangeAvatarView(APIView):
             Response: The response with JSON-serialized profile data.
         """
         profile = Profile.objects.select_related('avatar').get(user=request.user)
-
         avatar, created = Image.objects.get_or_create(
                 image=request.FILES['avatar'],
                 content=profile.fullName + '_avatar',
             )
 
         if created:
-            profile.avatar.delete()
-            profile.save()
+            if hasattr(profile, 'avatar'):
+                profile.avatar.delete()
+                profile.save()
             avatar.profile = profile
             avatar.save()
         serializer = ProfileSerializer(profile)
